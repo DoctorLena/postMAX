@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0A0A">
+<title>Доктор Лена — навигация</title>
+<script src="telegram-web-app.js"></script>
+<script>
+/* ============================================================
+   МЕНЯЕТЕ ТОЛЬКО ЭТОТ БЛОК — тексты и ссылки приложения
+   ============================================================ */
+window.KK_DATA = {
+  header: {
+    label: "Доктор Лена Сатирова",
+    titleLine1: "Навигация",
+    titleLine2: "по постам",
+    description: "Онколог, химиотерапевт, маммолог. Все полезные посты канала в одном месте — выбирайте тему и читайте."
+  },
+  cta: {
+    title: "Консультации и «второе мнение»",
+    text: "Очный приём в Москве и онлайн-консультации для пациентов из любого города. Помогу разобраться с диагнозом, лечением и побочными эффектами терапии.",
+    button: "Записаться на консультацию",
+    url: "https://doctorlena.online"
+  },
+  listTitle: "Полезные посты",
+  cards: [
+    { title: "Для новеньких", sub: "пост-знакомство", url: "https://max.ru/doctorlenaonline/AZzCkaSsbOE" },
+    { title: "SERM в онкологии", sub: "логика выбора между тамоксифеном и ингибиторами ароматазы", url: "https://max.ru/doctorlenaonline/AZzblb-OQ2U" },
+    { title: "ВПЧ", sub: "вакцинировать или нет?", url: "https://max.ru/doctorlenaonline/AZzg6jLubHY" },
+    { title: "Гормональная терапия", sub: "кому, когда и почему?", url: "https://max.ru/doctorlenaonline/AZz6oYSnVWI" },
+    { title: "Пьёте кофе?", sub: "какая связь между кофе и раком?", url: "https://max.ru/doctorlenaonline/AZz_rfBZcnQ" },
+    { title: "МГТ", sub: "что важно знать?", url: "https://max.ru/doctorlenaonline/AZ0E2zSHWNk" },
+    { title: "CAR-T", sub: "живое лекарство", url: "https://max.ru/doctorlenaonline/AZ1sTUxXQ5o" },
+    { title: "План спасения мозга", sub: "что конкретно нужно делать?", url: "https://max.ru/doctorlenaonline/AZ20a6UjTPc" },
+    { title: "Стресс и рак", sub: "какая связь?", url: "https://max.ru/doctorlenaonline/AZ3YqgMvb1o" },
+    { title: "Золендроновая кислота", sub: "чего от неё ждать?", url: "https://max.ru/doctorlenaonline/AZ3dGIDfdus" },
+    { title: "Список врачей", sub: "ваши рекомендации", url: "https://max.ru/doctorlenaonline/AZ3yhHSeV8c" },
+    { title: "Витамины и рак", sub: "кто их запрещает и почему?", url: "https://max.ru/doctorlenaonline/AZ38A8gTFWg" },
+    { title: "Лишний вес", sub: "второй по значимости фактор риска", url: "https://max.ru/doctorlenaonline/AZ4IALUsaX0" },
+    { title: "Стадия ≠ степень", sub: "как изменяются клетки на каждой стадии?", url: "https://max.ru/doctorlenaonline/AZ4gFDHhA54" },
+    { title: "Реабилитация", sub: "о влиянии физической активности", url: "https://max.ru/doctorlenaonline/AZ5ETVx2FUE" },
+    { title: "Загар", sub: "череда поломок", url: "https://max.ru/doctorlenaonline/AZ5oYOHFKRA" },
+    { title: "Почему важно знать о своей мутации?", sub: "кому показано тестирование?", url: "https://max.ru/doctorlenaonline/AZ6MVOvRAfY" },
+    { title: "Новости ASCO 2026", sub: "5 главных сюжета", url: "https://max.ru/doctorlenaonline/AZ6w8IapZTY" },
+    { title: "Витамин B12", sub: "можно или нет?", url: "https://max.ru/doctorlenaonline/AZ7Up14vDgU" },
+    { title: "Нужно ли защищать печень?", sub: "химиотерапия и не только", url: "https://max.ru/doctorlenaonline/AZ74YncCBwY" },
+    { title: "Обследования", sub: "контроль в ремиссии после РМЖ", url: "https://max.ru/doctorlenaonline/AZ8dKfFtJeA" },
+    { title: "Страх рецидива", sub: "как преодолеть?", url: "https://max.ru/doctorlenaonline/AZ82H2yfLMg" },
+    { title: "Как собраться на море?", sub: "и вообще, можно ли?", url: "https://max.ru/doctorlenaonline/AZ9AfELwX3s" },
+    { title: "Обследования", sub: "контроль в ремиссии после РЯ", url: "https://max.ru/doctorlenaonline/AZ9agIaJfW4" },
+    { title: "Полинейропатия", sub: "как не допустить?", url: "https://max.ru/doctorlenaonline/AZ9kgg76MQk" },
+    { title: "Лучевая терапия", sub: "от подготовки к реабилитации", url: "https://max.ru/doctorlenaonline/AZ9u4gVDRWg" },
+    { title: "Обследования", sub: "контроль в ремиссии после РШМ", url: "https://max.ru/doctorlenaonline/AZ9-VOcWNUY" },
+    { title: "МГТ и страх онкологии", sub: "как сохранить качество жизни?", url: "https://max.ru/doctorlenaonline/AZ-TfskvNP4" },
+    { title: "Неоадъювант", sub: "почему сначала химия, потом операция?", url: "https://max.ru/doctorlenaonline/AZ_Qx9FQfvA" },
+    { title: "Местный эстроген", sub: "не опасен!", url: "https://max.ru/doctorlenaonline/AaAYtMAvX80" },
+    { title: "Семейная история рака", sub: "мутации и их носители", url: "https://max.ru/doctorlenaonline/AaA-i2xXSXc" },
+    { title: "Оголённые провода", sub: "воздействие химиотерапии на нервные окончания", url: "https://max.ru/doctorlenaonline/AaBhPYsMdEA" },
+    { title: "Как не допустить рак?", sub: "что мы можем сделать?", url: "https://max.ru/doctorlenaonline/AaCPvjZEdTk" },
+    { title: "ОНКОновости сентябрь 2026", sub: "последние важные новости", url: "https://max.ru/doctorlenaonline/AaDNDBM9WZY" },
+    { title: "Как попасть на очный приём?", sub: "как получить онлайн консультацию", url: "https://max.ru/doctorlenaonline/AaATqzotW-Q" }
+  ],
+  footer: {
+    name: "Доктор Лена Сатирова",
+    note: "Онколог · химиотерапевт · маммолог"
+  }
+};
+/* ============================ конец блока ============================ */
+</script>
+<style>
+  :root{
+    --bg:#0A0A0A;
+    --surface:#141414;
+    --surface-2:#1A1A1A;
+    --line:#242424;
+    --text:#F2F2F0;
+    --muted:#9A9A96;
+    --accent:#007a5e;
+    --accent-hi:#00a37d;
+    --accent-soft:rgba(0,122,94,.14);
+    --radius:22px;
+    --font-head:"Unbounded","Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    --font-body:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--text)}
+  body{
+    font-family:var(--font-body);
+    font-size:16px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:transparent;
+    min-height:100vh;
+  }
+  .wrap{
+    max-width:560px;margin:0 auto;
+    padding:40px 20px calc(40px + env(safe-area-inset-bottom));
+  }
+
+  /* 1. Шапка */
+  .hero{padding:8px 4px 32px}
+  .label{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-hi);margin-bottom:18px;
+  }
+  .label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .hero h1{
+    font-family:var(--font-head);font-weight:700;
+    font-size:clamp(28px,8vw,38px);line-height:1.12;letter-spacing:-.01em;
+    margin-bottom:16px;
+  }
+  .hero h1 span{display:block}
+  .hero h1 span + span{color:var(--accent-hi)}
+  .hero p{color:var(--muted);font-size:16px;max-width:46ch}
+
+  /* 2. Призыв */
+  .cta{
+    position:relative;overflow:hidden;
+    background:linear-gradient(160deg,#0d3a2f 0%,#08241d 55%,#0f0f0f 100%);
+    border:1px solid rgba(0,163,125,.28);
+    border-radius:28px;padding:28px 24px 24px;margin-bottom:40px;
+  }
+  .cta::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;
+    background:radial-gradient(circle,rgba(0,163,125,.35),transparent 70%);pointer-events:none;
+  }
+  .cta h2{
+    font-family:var(--font-head);font-weight:600;font-size:21px;line-height:1.25;
+    margin-bottom:12px;position:relative;
+  }
+  .cta p{color:#C9D6D1;font-size:15px;margin-bottom:22px;position:relative}
+  .btn{
+    position:relative;display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;min-height:54px;padding:14px 20px;border-radius:16px;
+    background:var(--accent);color:#fff;text-decoration:none;
+    font-family:var(--font-head);font-weight:600;font-size:15px;
+    transition:background .2s ease,transform .1s ease;
+  }
+  .btn:hover{background:var(--accent-hi)}
+  .btn:active{transform:scale(.98)}
+  .btn svg{flex:none}
+
+  /* 3. Карточки */
+  .list-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding:0 4px;margin-bottom:16px;
+  }
+  .list-head h3{font-family:var(--font-head);font-weight:600;font-size:18px}
+  .list-head span{color:var(--muted);font-size:13px}
+  .cards{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .card{
+    display:flex;align-items:center;gap:16px;
+    padding:18px 18px 18px 16px;border-radius:var(--radius);
+    background:var(--surface);border:1px solid var(--line);
+    color:inherit;text-decoration:none;
+    transition:background .2s ease,border-color .2s ease,transform .1s ease;
+  }
+  .card:hover{background:var(--surface-2);border-color:rgba(0,163,125,.4)}
+  .card:active{transform:scale(.985)}
+  .num{
+    flex:none;width:42px;height:42px;border-radius:13px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--accent-soft);color:var(--accent-hi);
+    font-family:var(--font-head);font-weight:600;font-size:14px;
+  }
+  .body{flex:1;min-width:0}
+  .title{display:block;font-weight:600;font-size:16px;line-height:1.3;margin-bottom:3px}
+  .sub{display:block;color:var(--muted);font-size:13px;line-height:1.4}
+  .arrow{
+    flex:none;width:32px;height:32px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);transition:color .2s ease,background .2s ease;
+  }
+  .card:hover .arrow{color:#fff;background:var(--accent)}
+
+  /* 4. Подвал */
+  .footer{
+    margin-top:44px;padding:28px 4px 0;border-top:1px solid var(--line);text-align:center;
+  }
+  .footer .name{font-family:var(--font-head);font-weight:600;font-size:15px;margin-bottom:4px}
+  .footer .note{color:var(--muted);font-size:13px}
+
+  a:focus-visible{outline:2px solid var(--accent-hi);outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+(function(){
+  var D = window.KK_DATA || {};
+
+  /* ---------- Определяем, внутри ли Телеграма ---------- */
+  var loc = (location.hash || "") + (location.search || "");
+  var IN_TG = /tgWebApp/.test(loc) ||
+    !!window.TelegramWebviewProxy ||
+    !!(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.performAction);
+
+  function getTg(){
+    return (window.Telegram && window.Telegram.WebApp) ? window.Telegram.WebApp : null;
+  }
+
+  /* Прямая отправка событий, если объекта Telegram.WebApp нет */
+  function postEvent(type, data){
+    var payload = data || {};
+    try{
+      if (window.TelegramWebviewProxy && window.TelegramWebviewProxy.postEvent){
+        window.TelegramWebviewProxy.postEvent(type, JSON.stringify(payload));
+        return;
+      }
+      if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.performAction){
+        window.webkit.messageHandlers.performAction.postMessage(JSON.stringify({eventType:type, eventData:payload}));
+        return;
+      }
+      if (window.parent && window.parent !== window){
+        window.parent.postMessage(JSON.stringify({eventType:type, eventData:payload}), "*");
+      }
+    }catch(e){}
+  }
+
+  /* ---------- Инициализация ---------- */
+  var BG = "#0A0A0A";
+  var tg = getTg();
+  if (tg){
+    try{ tg.ready(); }catch(e){}
+    try{ tg.expand(); }catch(e){}
+    try{ tg.setHeaderColor(BG); }catch(e){}
+    try{ tg.setBackgroundColor(BG); }catch(e){}
+    try{ if (tg.setBottomBarColor) tg.setBottomBarColor(BG); }catch(e){}
+  } else if (IN_TG){
+    postEvent("web_app_ready");
+    postEvent("web_app_expand");
+    postEvent("web_app_set_header_color", {color: BG});
+    postEvent("web_app_set_background_color", {color: BG});
+  }
+
+  /* ---------- Рендер ---------- */
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  }
+  var TARGET = IN_TG ? "_self" : "_blank";
+  var REL = IN_TG ? "" : ' rel="noopener noreferrer"';
+  function pad(n){ return n < 10 ? "0" + n : String(n); }
+
+  var arrowSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var btnSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  var h = D.header || {}, c = D.cta || {}, f = D.footer || {}, cards = D.cards || [];
+  var html = "";
+
+  html += '<header class="hero">' +
+    '<div class="label">' + esc(h.label) + '</div>' +
+    '<h1><span>' + esc(h.titleLine1) + '</span><span>' + esc(h.titleLine2) + '</span></h1>' +
+    '<p>' + esc(h.description) + '</p>' +
+  '</header>';
+
+  html += '<section class="cta">' +
+    '<h2>' + esc(c.title) + '</h2>' +
+    '<p>' + esc(c.text) + '</p>' +
+    '<a class="btn js-link" href="' + esc(c.url) + '" data-url="' + esc(c.url) + '" target="' + TARGET + '"' + REL + '>' +
+      esc(c.button) + btnSvg + '</a>' +
+  '</section>';
+
+  html += '<div class="list-head"><h3>' + esc(D.listTitle || "") + '</h3><span>' + cards.length + '</span></div>';
+  html += '<ul class="cards">';
+  for (var i = 0; i < cards.length; i++){
+    var it = cards[i];
+    html += '<li><a class="card js-link" href="' + esc(it.url) + '" data-url="' + esc(it.url) + '" target="' + TARGET + '"' + REL + '>' +
+      '<span class="num">' + pad(i + 1) + '</span>' +
+      '<span class="body"><span class="title">' + esc(it.title) + '</span>' +
+        (it.sub ? '<span class="sub">' + esc(it.sub) + '</span>' : '') + '</span>' +
+      '<span class="arrow">' + arrowSvg + '</span>' +
+    '</a></li>';
+  }
+  html += '</ul>';
+
+  html += '<footer class="footer"><div class="name">' + esc(f.name) + '</div>' +
+    (f.note ? '<div class="note">' + esc(f.note) + '</div>' : '') + '</footer>';
+
+  document.getElementById("app").innerHTML = html;
+
+  /* ---------- Открытие ссылок ---------- */
+  function openUrl(url){
+    var isTgLink = url.indexOf("https://t.me/") === 0;
+    var w = getTg();
+    if (w){
+      if (isTgLink){
+        try{ w.close(); }catch(e){}
+        try{ w.openTelegramLink(url); }catch(e){}
+      } else {
+        try{ w.openLink(url); }catch(e){ location.href = url; }
+      }
+      return;
+    }
+    if (isTgLink){
+      postEvent("web_app_close");
+      postEvent("web_app_open_tg_link", {path_full: url.replace("https://t.me", "")});
+    } else {
+      postEvent("web_app_open_link", {url: url});
+    }
+  }
+
+  var links = document.querySelectorAll("a.js-link");
+  for (var j = 0; j < links.length; j++){
+    links[j].addEventListener("click", function(ev){
+      if (!IN_TG && !getTg()) return; /* обычный браузер — ссылка открывается сама */
+      var url = this.getAttribute("data-url") || this.getAttribute("href");
+      if (!url) return;
+      ev.preventDefault();
+      openUrl(url);
+    });
+  }
+})();
+</script>
+</body>
+</html>
